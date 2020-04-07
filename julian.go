@@ -13,18 +13,18 @@ func (jd Day) Int() int {
 }
 
 //Format returns the string representation of the julian day
-func (jd *Day) Format() string {
+func (jd Day) Format() string {
 	y, m, d := jd.ToGregorian()
 	return fmt.Sprintf("%d-%d-%d", d, m, y)
 }
 
 //Sub returns the day jd-x
-func (jd *Day) Sub(x int) Day {
+func (jd Day) Sub(x int) Day {
 	return Day(jd.Int() - x)
 }
 
 //Add returns the day jd+x
-func (jd *Day) Add(x int) Day {
+func (jd Day) Add(x int) Day {
 	return Day(jd.Int() + x)
 }
 
@@ -44,12 +44,12 @@ func FromGregorian(y, m, d int) Day {
 
 //WeekDay returns the week day of the julian day
 //where 0 = Sunday and 6 = Saturday
-func (jd *Day) WeekDay() int {
+func (jd Day) WeekDay() int {
 	return (jd.Int() + 1) % 7
 }
 
 //ToGregorian returns the year, month and day corresponding to the julian date
-func (jd *Day) ToGregorian() (int, int, int) {
+func (jd Day) ToGregorian() (int, int, int) {
 	l := jd.Int() + 68569
 	n := 4 * l / 146097
 	l = l - (146097*n+3)/4
@@ -64,7 +64,7 @@ func (jd *Day) ToGregorian() (int, int, int) {
 }
 
 //ToTime returns the time object equivalent of the julian day
-func (jd *Day) ToTime(loc *time.Location) time.Time {
+func (jd Day) ToTime(loc *time.Location) time.Time {
 	y, m, d := jd.ToGregorian()
 	return time.Date(y, time.Month(m), d, 12, 0, 0, 0, loc)
 }
