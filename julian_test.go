@@ -48,3 +48,19 @@ func TestWeekDay(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestArithmetic(t *testing.T) {
+	jd := Day(TestJD)
+
+	t.Run("retreat", func(t *testing.T) {
+		if jd.Sub(5).Int() != TestJD-5 {
+			t.Fail()
+		}
+	})
+
+	t.Run("advance", func(t *testing.T) {
+		if jd.Add(5).Int() != TestJD+5 {
+			t.Fail()
+		}
+	})
+}
