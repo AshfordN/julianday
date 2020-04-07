@@ -25,7 +25,7 @@ func TestGregorianConversion(t *testing.T) {
 }
 
 func TestJulianConversion(t *testing.T) {
-	jd := Julian(TestJD)
+	jd := Day(TestJD)
 
 	t.Run("to gregorian", func(t *testing.T) {
 		y, m, d := jd.ToGregorian()
@@ -43,7 +43,7 @@ func TestJulianConversion(t *testing.T) {
 }
 
 func TestWeekDay(t *testing.T) {
-	jd := Julian(TestJD)
+	jd := Day(TestJD)
 	if jd.WeekDay() != 2 { //tuesday
 		t.Fail()
 	}
