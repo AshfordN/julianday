@@ -8,14 +8,24 @@ import (
 type Day int
 
 //Int returns the integer representation of the julian day
-func (jd *Day) Int() int {
-	return int(*jd)
+func (jd Day) Int() int {
+	return int(jd)
 }
 
 //Format returns the string representation of the julian day
 func (jd *Day) Format() string {
 	y, m, d := jd.ToGregorian()
 	return fmt.Sprintf("%d-%d-%d", d, m, y)
+}
+
+//Sub returns the day jd-x
+func (jd *Day) Sub(x int) Day {
+	return Day(jd.Int() - x)
+}
+
+//Add returns the day jd+x
+func (jd *Day) Add(x int) Day {
+	return Day(jd.Int() + x)
 }
 
 //FromTime returns the julian day equivalent of the time object
